@@ -60,14 +60,16 @@ namespace Assignment
             //2.  Return a grouped a list of products only for categories that have
             //at least one product that is out of stock..
 
-            var v = ProductsList.Any(p => p.UnitsInStock == 0);
+            var v = ProductsList.GroupBy(c=>c.Category)
+                           .Any(p => p.UnitsInStock == 0);
 
 
             //3.  Return a grouped a list of products only for categories that
             //have all of their products in stock.
 
 
-
+            var categoryproductsstock = ProductsList.Where(p => p.UnitsInStock != 0)
+                                                  .GroupBy(c=>c.Category);
 
             #endregion
             #region LINQ – Grouping Operators
